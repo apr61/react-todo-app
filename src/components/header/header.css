@@ -1,0 +1,23 @@
+header{
+    margin: 2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    color: var(--clr-neutral-lt-gray);
+}
+
+header div{
+    cursor: pointer;
+}
+
+@media (min-width: 50rem) {
+    header{
+        max-width: 35rem;
+        width: 100%;
+        margin: 2rem auto;
+        margin-top: 5rem;
+    }
+}

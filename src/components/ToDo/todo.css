@@ -1,0 +1,87 @@
+
+.all-todos{
+    margin: 1rem 0;
+    box-shadow: 0px 28px 12px -10px var(--box-shadow-clr);
+    border-radius: .25rem;
+    overflow: hidden;
+}
+
+.todo{
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    background-color: var(--card-bg-color);
+    align-items: center;
+    border-bottom: 1px solid var(--todo-border-bottom-color);
+}
+
+.todo-name{
+    color: var(--todo-name-clr);
+    cursor: pointer;
+}
+
+.delete{
+    margin-left: auto;
+    cursor: pointer;
+}
+.options{
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg-color);
+    color: var(--options-clr);
+}
+
+.options button{
+    border: none;
+    background-color: transparent;
+    color: var(--options-clr);
+    cursor: pointer;
+}
+
+.menu{
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--card-bg-color);
+}
+
+.menu p{
+    color: var(--menu-p-color);
+    cursor: pointer;
+}
+
+.active{
+    color: var(--clr-primary-blue);
+}
+
+.announcement{
+    font-size: .85rem;
+    text-align: center;
+    margin-top: 2.75rem;
+    color: var(--annocuncement-clr);
+}
+
+.completed-item{
+    text-decoration: line-through;
+    color: var(--completed-item-clr);
+}
+
+.menu-desktop{
+    display: none;
+}
+
+@media (min-width: 50rem) {
+    .menu-mobile{
+        display: none;
+    }
+    .menu-desktop{
+        display: flex;
+    }
+    .menu{
+        padding: 0;
+    }
+}
