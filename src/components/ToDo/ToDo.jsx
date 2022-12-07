@@ -1,18 +1,15 @@
 import './todo.css'
-import { ReactComponent as Cross } from '../../assets/icons/icon-cross.svg';
+import  Cross  from '../../assets/icons/icon-cross.svg';
+import CheckBox from '../checkbox/CheckBox';
 
 function ToDo({ todo, onClickMarkAsCompleted, onRemove}) {
-    console.log(todo);
     return (
         <div className="todo" key={todo.id}>
-            <div className="round">
-                <input type="checkbox" defaultChecked={todo.completed} disabled={todo.completed} onClick={() => onClickMarkAsCompleted(todo.id)} id={todo.id} />
-                <label htmlFor={todo.id}></label>
-            </div>
+            <CheckBox key={todo.id} checked={todo.completed} disabled={todo.completed} onCheckedMarkAsCompleted={() => onClickMarkAsCompleted(todo.id)} id={todo.id}/>
 
             <p className={todo.completed ? 'completed-item' : 'todo-name'}>{todo.title}</p>
-            <div className="delete" onRemove={onRemove}>
-                <Cross />
+            <div className="delete" onClick={() => onRemove(todo.id)}>
+                <img src={Cross} alt="Delete Button" />
             </div>
         </div>
     )

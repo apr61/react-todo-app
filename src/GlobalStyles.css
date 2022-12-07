@@ -12,7 +12,6 @@
     --clr-neutral-dt-very-dark-blue: hsl(235, 21%, 11%);
     --clr-neutral-dt-very-dark-sat-blue: hsl(235, 24%, 19%);
     --clr-neutral-dt-light-gray-blue: hsl(234, 39%, 85%);
-    --clr-neutral-dt-light-gray-blue-hover: hsl(236, 33%, 92%);
     --clr-neutral-dt-dark-gray-blue: hsl(234, 11%, 52%);
     --clr-neutral-dt-very-dark-gray-blue-1: hsl(234, 11%, 52%);
     --clr-neutral-dt-very-dark-gray-blue-2: hsl(237, 14%, 26%);
@@ -38,6 +37,8 @@ body{
     --round-label-clr: #fff;
     --round-label-border: #ccc;
     --placeholder-clr: var(--options-clr);
+    --task-input-clr: black;
+    --clr-neutral-dt-light-gray-blue-hover: var(--todo-name-clr);
 
     min-height: 100vh;
     font-family: var(--font-family);
@@ -62,6 +63,8 @@ body{
     --box-shadow-clr: var(--clr-neutral-dt-very-dark-blue);
     --round-label-clr: var(--card-bg-color);
     --round-label-border: var(--todo-border-bottom-color);
+    --task-input-clr: var(--todo-name-clr);
+    --clr-neutral-dt-light-gray-blue-hover: hsl(236, 33%, 92%);
 }
 
 @media (min-width: 376px) {

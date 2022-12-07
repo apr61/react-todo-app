@@ -1,9 +1,9 @@
 import './checkbox.css'
 
-function CheckBox({id}) {
+function CheckBox({id, checked, disabled, onCheckedMarkAsCompleted}) {
     return (
         <div className="round">
-            <input type="checkbox" id={id} />
+            <input type="checkbox" id={id} defaultChecked={checked} disabled={disabled} onClick={onCheckedMarkAsCompleted}/>
             <label htmlFor={id}></label>
         </div>
     )

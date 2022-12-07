@@ -1,21 +1,23 @@
-import { useState, useEffect } from 'react'
-import data from '../data/static';
+import { useState } from 'react'
 import ToDo from '../components/ToDo/ToDo';
 import Header from '../components/header/Header';
 import CheckBox from '../components/checkbox/CheckBox';
+import Button from '../utils/buttons/Button';
+import data from '../data/static';
 import './home.css'
+
 
 let globalId = data.length;
 
 function Home() {
     const [todos, setTodos] = useState(data);
     const [task, setTask] = useState('');
-    const [completedItems, setCompletedItems] = useState(0);
+    const [currentFilter, setCurrentFilter] = useState(0);
 
     function addTodo(e) {
         e.preventDefault();
         const newTodo = {
-            'id': globalId++,
+            'id': ++globalId,
             'title': task,
             'completed': false
         }
@@ -36,9 +38,35 @@ function Home() {
         }))
     }
 
-    useEffect(() => {
-        setCompletedItems(todos.filter(todo => todo.completed).length)
-    }, [todos])
+    let leftTodos = todos.filter(todo => !todo.completed).length;
+
+    function clearAllCompleted() {
+        setTodos(oldTodos => oldTodos.filter(todo => !todo.completed));
+    }
+
+    function filteredTodos() {
+        if (currentFilter === 1) {
+            // active results
+            return todos.filter(todo => !todo.completed)
+        } else if (currentFilter === 2) {
+            return todos.filter(todo => todo.completed)
+        }
+        return todos;
+    }
+
+    function activeTodos() {
+        setCurrentFilter(1);
+        filteredTodos();
+    }
+
+    function completedTodos() {
+        setCurrentFilter(2);
+        filteredTodos();
+    }
+    function allTodos() {
+        setCurrentFilter(0);
+        filteredTodos();
+    }
 
     return (
         <>
@@ -53,33 +81,32 @@ function Home() {
                     </form>
                 </section>
                 <section className="all-todos">
-                    {todos.map(todo => {
-                        return <ToDo todo={todo} onClickMarkAsCompleted={markAsCompleted} onRemove={deleteTodo} />
+                    {filteredTodos().map(todo => {
+                        return <ToDo todo={todo} onClickMarkAsCompleted={markAsCompleted} onRemove={deleteTodo} key={todo.id} />
                     })}
-
-                    <div className="options">
-                        <p>{todos.length - completedItems} Items left</p>
-                        <div className="menu menu-desktop">
-                            <p >All</p>
-                            <p >Active</p>
-                            <p >Completed</p>
-                        </div>
-                        <button>Clear Completed</button>
+                </section>
+                <section className="options">
+                    <p>{leftTodos} Items left</p>
+                    <div className="menu menu-desktop">
+                        <Button title={'All'} handleFunction={allTodos} active={currentFilter === 0} />
+                        <Button title={'Active'} handleFunction={activeTodos} active={currentFilter === 1} />
+                        <Button title={'Completed'} handleFunction={completedTodos} active={currentFilter === 2} />
                     </div>
+                    <Button title={'Clear all completed'} handleFunction={clearAllCompleted} />
                 </section>
                 <section className='all-todos'>
                     <div className="menu menu-mobile">
-                        <p>All</p>
-                        <p>Active</p>
-                        <p>Completed</p>
+                        <Button title={'All'} handleFunction={allTodos} active={currentFilter === 0} />
+                        <Button title={'Active'} handleFunction={activeTodos} active={currentFilter === 1} />
+                        <Button title={'Completed'} handleFunction={completedTodos} active={currentFilter === 2} />
                     </div>
                 </section>
-                <section>
-                    <p className="announcement">
-                        Drag and drop to reorder list
-                    </p>
-                </section>
             </main>
+            <footer>
+                <p className="announcement">
+                    Drag and drop to reorder list
+                </p>
+            </footer>
         </>
     )
 }

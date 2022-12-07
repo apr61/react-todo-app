@@ -24,7 +24,6 @@ function ThemeProvider({ children }) {
     }
 
     useEffect(() => {
-        console.log(darkTheme);
         if (darkTheme === 'dark') {
             document.body.classList.add('dark-theme')
         }else { 

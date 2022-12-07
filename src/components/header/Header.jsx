@@ -1,5 +1,5 @@
-import { ReactComponent as Moon } from '../../assets/icons/icon-moon.svg';
-import { ReactComponent as Sun } from '../../assets/icons/icon-sun.svg';
+import Moon  from '../../assets/icons/icon-moon.svg';
+import Sun  from '../../assets/icons/icon-sun.svg';
 import './header.css'
 import { useTheme ,useThemeFun } from '../../context/ThemeContext';
 
@@ -9,7 +9,9 @@ function Header(){
     return (
         <header>
             <h1>Todo</h1>
-            <div onClick={toogleTheme}>{darkTheme === 'dark' ? <Sun /> : <Moon />}</div>
+            <div onClick={toogleTheme}>
+                <img src={darkTheme === 'dark' ? Sun  : Moon } alt="Theme Changer" />
+            </div>
         </header>
     )
 }
