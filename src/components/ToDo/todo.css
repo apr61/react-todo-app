@@ -23,3 +23,8 @@
     text-decoration: line-through;
     color: var(--completed-item-clr);
 }
+
+.delete{
+    margin-left: auto;
+    cursor: pointer;
+}

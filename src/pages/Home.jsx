@@ -5,7 +5,7 @@ import CheckBox from '../components/checkbox/CheckBox';
 import Button from '../utils/buttons/Button';
 import data from '../data/static';
 import './home.css'
-
+import { DragDropContext, Droppable } from 'react-beautiful-dnd'
 
 let globalId = data.length;
 
@@ -68,6 +68,17 @@ function Home() {
         filteredTodos();
     }
 
+    const onDragEnd = (result) => {
+        const { source, destination } = result;
+        if (!destination) return
+
+        const orderedTodos = todos;
+        const [reorderd] = orderedTodos.splice(source.index, 1);
+        orderedTodos.splice(destination.index, 0, reorderd);
+
+        return setTodos(orderedTodos);
+    }
+
     return (
         <>
             <Header />
@@ -80,11 +91,20 @@ function Home() {
                             placeholder='Create a new todo...' />
                     </form>
                 </section>
-                <section className="all-todos">
-                    {filteredTodos().map(todo => {
-                        return <ToDo todo={todo} onClickMarkAsCompleted={markAsCompleted} onRemove={deleteTodo} key={todo.id} />
-                    })}
-                </section>
+                <DragDropContext onDragEnd={onDragEnd}>
+                    <section className="all-todos">
+                        <Droppable droppableId='todos'>
+                            {(provided) => (
+                                <div ref={provided.innerRef} {...provided.droppableProps}>
+                                    {filteredTodos().map((todo, index) => (
+                                        <ToDo index={index} todo={todo} onClickMarkAsCompleted={markAsCompleted} onRemove={deleteTodo} key={todo.id} />
+                                    ))}
+                                    {provided.placeholder}
+                                </div>
+                            )}
+                        </Droppable>
+                    </section>
+                </DragDropContext>
                 <section className="options">
                     <p>{leftTodos} Items left</p>
                     <div className="menu menu-desktop">

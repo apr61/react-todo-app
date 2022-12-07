@@ -26,9 +26,8 @@ input[type=text]:focus{
     caret-color: var(--clr-primary-blue);
 }
 
-.delete{
-    margin-left: auto;
-    cursor: pointer;
+ul{
+    list-style: none;
 }
 
 .options{
