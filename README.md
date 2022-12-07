@@ -9,7 +9,7 @@ This is a solution to the [Todo app challenge on Frontend Mentor](https://www.fr
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [My process](#my-process)
-  - [Built with](#build-with)
+  - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
@@ -33,7 +33,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./public/output/scrrenshot.png)
+![Sceenshot of output](./public/output/screenshot.png)
 
 ### Links
 
