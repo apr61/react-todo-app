@@ -1,8 +1,9 @@
 # Simple React Todo app
 
-This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
+
 - [Overview](#overview)
   - [Challenge](#the-challenge)
   - [Screenshot](#screenshot)
@@ -32,12 +33,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./public/images/scrrenshot.jpg)
+![](./public/output/scrrenshot.png)
 
 ### Links
-- Solution Url: [Solution Url](https://github.com/apr61/react-todo-app)
-- Live Site Url: [Live Site Url]()
 
+- Solution Url: [Solution Url](https://github.com/apr61/react-todo-app)
+- Live Site Url: [Live Site Url](https://react-todo-app-chi-livid.vercel.app/)
 
 ## My Process
 
@@ -51,14 +52,33 @@ Users should be able to:
 
 ### What I learned
 
+```js
 
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return
+    const orderedTodos = todos;
+    const [reorderd] = orderedTodos.splice(source.index, 1);
+    orderedTodos.splice(destination.index, 0, reorderd);
+    return setTodos(orderedTodos);
+  }
 
+  <Droppable droppableId='todos'>
+    {(provided) => (
+      <div ref={provided.innerRef} {...provided.droppableProps}>
+      {filteredTodos().map((todo, index) => (
+        <ToDo index={index} todo={todo} onClickMarkAsCompleted={markAsCompleted} onRemove={deleteTodo} key={todo.id} />
+      ))}
+      {provided.placeholder}
+      </div>
+    )}
+  </Droppable>
+
+```
 
 ### Useful Resources
 
 - [React Drag and Drop Tutorial | React Beautiful DnD Tutorial](https://www.youtube.com/watch?v=uEVHJf30bWI&t=1196s)
-
-
 
 ## Author
 
